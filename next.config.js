@@ -3,4 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+module.exports = {
+  ...nextConfig,
+  env: {
+    BOOK_KEY: process.env.BOOK_KEY ,
+  },
+};

@@ -2,7 +2,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
-import { getBooksWithTerms } from "../../store/Books.store";
+import { getBooksWithTerms, setTerms } from "../../store/Books.store";
 import { useAppDispatch } from "../../store/store";
 
 const SearchInput = () => {
@@ -12,7 +12,8 @@ const SearchInput = () => {
   const debounceSearch = useDebounce(search, 1000);
 
   const handleSearch = async (terms: string) => {
-    dispatch(getBooksWithTerms(terms));
+    dispatch(setTerms(terms));
+    dispatch(getBooksWithTerms({ page: 0, terms }));
   };
 
   useEffect(() => {

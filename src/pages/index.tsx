@@ -5,9 +5,10 @@ import SearchInput from "../Components/SearchInput";
 import { useAppSelector } from "../store/store";
 import { SelectBooks } from "../store/Books.store";
 import Card from "../Components/Card";
+import Paginate from "../Components/Paginate";
 
 const Home: NextPage = () => {
-  const { books, totalItems } = useAppSelector(SelectBooks);
+  const { books } = useAppSelector(SelectBooks);
 
   return (
     <>
@@ -17,11 +18,13 @@ const Home: NextPage = () => {
 
       <Box>
         {books.map((book) => (
-          <Card key={book.title} title={book.title} />
+          <Card key={book.id} title={book.title} />
         ))}
       </Box>
 
-      <h1>{totalItems}</h1>
+      <Box>
+        <Paginate />
+      </Box>
     </>
   );
 };

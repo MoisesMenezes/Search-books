@@ -24,13 +24,10 @@ const initialState:BooksProps = {
   terms: "",
 }
 
-
-
 export const getBooksWithTerms = createAsyncThunk<any,getBooksWithTermsProps>('books/getBooksWithTerms', async ({ terms,page}) => {
   const response = await getBooks(terms,page);
   return response;
 })
-
 
 export const BooksSlice = createSlice({
   name: 'books',
@@ -39,6 +36,11 @@ export const BooksSlice = createSlice({
     setTerms: (state, action: PayloadAction<string>) => {
       state.terms = action.payload;
     },
+
+    cleanStates: (state) => {
+      state.books = [];
+      state.totalPages = 0;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getBooksWithTerms.fulfilled, (state, action) => {
@@ -57,7 +59,7 @@ export const BooksSlice = createSlice({
   }
 })
 
-export const {setTerms } = BooksSlice.actions;
+export const {setTerms,cleanStates } = BooksSlice.actions;
 export const SelectBooks = (state: RootState) => state.books;
 
 export default BooksSlice.reducer;

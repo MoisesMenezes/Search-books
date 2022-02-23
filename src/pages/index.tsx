@@ -6,6 +6,7 @@ import { useAppSelector } from "../store/store";
 import { SelectBooks } from "../store/Books.store";
 import Card from "../Components/Card";
 import Paginate from "../Components/Paginate";
+import ModalBook from "../Components/ModalBook";
 
 const Home: NextPage = () => {
   const { books } = useAppSelector(SelectBooks);

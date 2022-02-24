@@ -7,6 +7,7 @@ const Paginate = () => {
   const { totalPages, terms } = useAppSelector(SelectBooks);
   const dispatch = useAppDispatch();
 
+  //TODO resolução celular
   const cssPagination = {
     ul: {
       display: "flex",

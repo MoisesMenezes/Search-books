@@ -10,13 +10,9 @@ import {
   Box,
   Button,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
-import {
-  addFavorite,
-  getFavorites,
-  SelectFavorites,
-} from "../../store/Favorites.store";
-import { useAppDispatch, useAppSelector } from "../../store/store";
+import { addFavorite } from "../../store/Favorites.store";
+import { useAppDispatch } from "../../store/store";
+import { InfoIcon } from "@chakra-ui/icons";
 
 const ModalBook = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,7 +20,9 @@ const ModalBook = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button rightIcon={<InfoIcon fontSize="1.15rem" />} onClick={onOpen}>
+        Ver Detalhes
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

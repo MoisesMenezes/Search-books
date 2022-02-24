@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     dispatch(getFavorites());
   }, []);
 
-  console.log("favorite", favorites);
+  console.log("favorite", books);
 
   return (
     <>
@@ -27,9 +27,15 @@ const Home: NextPage = () => {
         <SearchInput />
       </Box>
 
-      <Box>
+      <Box
+        p="1rem 2rem"
+        margin="0 auto"
+        display="flex"
+        gap="2rem"
+        flexWrap="wrap"
+      >
         {books.map((book) => (
-          <Card key={book.id} title={book.title} />
+          <Card key={book.id} book={book} />
         ))}
       </Box>
 

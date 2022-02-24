@@ -51,11 +51,11 @@ export const BooksSlice = createSlice({
       }
 
       const formatBooks = action.payload.items.map((book: any) => {
-
         return {
           id: book.id,
           img: book.volumeInfo?.imageLinks?.thumbnail,
           title: book.volumeInfo?.title,
+          authors: String(book.volumeInfo?.authors).replaceAll(","," ")
         }
       })
 

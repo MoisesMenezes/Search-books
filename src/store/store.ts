@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 
 import BooksReducer from "./Books.store";
+import FavoriteReducer from "./Favorites.store";
 
 
 
@@ -9,6 +10,7 @@ import BooksReducer from "./Books.store";
 const store = configureStore({
   reducer: {
     books: BooksReducer,
+    favorites: FavoriteReducer
   },
 });
 

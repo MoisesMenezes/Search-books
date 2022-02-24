@@ -10,16 +10,21 @@ import {
   Box,
   Button,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+import {
+  addFavorite,
+  getFavorites,
+  SelectFavorites,
+} from "../../store/Favorites.store";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 
 const ModalBook = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log("AAA");
+  const dispatch = useAppDispatch();
 
   return (
     <>
-      <Button as="a" onClick={onOpen}>
-        Open Modal
-      </Button>
+      <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -27,6 +32,9 @@ const ModalBook = () => {
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <Button onClick={() => dispatch(addFavorite({ name: "teste5" }))}>
+              Local storage
+            </Button>
             <h1>MODAL</h1>
           </ModalBody>
         </ModalContent>

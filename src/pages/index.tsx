@@ -12,7 +12,6 @@ import { useEffect } from "react";
 
 const Home: NextPage = () => {
   const { books } = useAppSelector(SelectBooks);
-  const { favorites } = useAppSelector(SelectFavorites);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,11 +27,12 @@ const Home: NextPage = () => {
       </Box>
 
       <Box
-        p="1rem 2rem"
+        p={{ base: "2rem 0.5rem", md: "1rem 2rem" }}
         margin="0 auto"
         display="flex"
         gap="2rem"
         flexWrap="wrap"
+        justifyContent="center"
       >
         {books.map((book) => (
           <Card key={book.id} book={book} />

@@ -30,17 +30,25 @@ const SearchInput = () => {
   }, [debounceSearch]);
 
   return (
-    <InputGroup>
-      <InputRightElement pointerEvents="none">
-        <SearchIcon />
+    <InputGroup display="flex">
+      <InputRightElement alignContent="center" pointerEvents="none" top="4px">
+        <SearchIcon alignSelf="center" fontSize="22px" />
       </InputRightElement>
       <Input
-        border="2px"
+        size="lg"
+        border="3px solid"
         type="text"
+        fontWeight="bold"
         placeholder="Digite o livro"
         borderColor="gray.400"
         focusBorderColor="gray.800"
+        _hover={{
+          border: "2px solid gray.400",
+        }}
         onChange={(e) => setSearch(e.target.value)}
+        _placeholder={{
+          fontWeight: "bold",
+        }}
       />
     </InputGroup>
   );

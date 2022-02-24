@@ -44,6 +44,12 @@ export const BooksSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getBooksWithTerms.fulfilled, (state, action) => {
+
+      if(action.payload.totalItems  === 0) {
+        state.books = [];
+        return;
+      }
+
       const formatBooks = action.payload.items.map((book: any) => {
 
         return {

@@ -16,8 +16,19 @@ const Paginate = () => {
       "user-select": "none",
     },
 
+    a: {
+      transition: "all 0.1s",
+      padding: "1rem",
+      "font-size": "1.2rem",
+      "font-weight": "bold",
+      "line-height": "2.5rem",
+    },
+
     ".selected": {
-      color: "red",
+      color: "white",
+      background: "black",
+      "border-color": "transparent",
+      " border-radius": "4px",
     },
   };
 

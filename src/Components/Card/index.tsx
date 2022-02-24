@@ -1,15 +1,10 @@
 import { Box, Heading } from "@chakra-ui/react";
 import Image from "next/image";
+import { Book } from "../../types/book";
 import ModalBook from "../ModalBook";
 
-interface BookProps {
-  title: string;
-  img: string;
-  authors: string;
-}
-
 interface CardProps {
-  book: BookProps;
+  book: Book;
 }
 
 const Card = ({ book }: CardProps) => {
@@ -25,7 +20,7 @@ const Card = ({ book }: CardProps) => {
       boxShadow="0 2px 2px 0 rgba(0, 0, 0, 0.08)"
     >
       <Box minW="150px">
-        <Image height="200px" width="150" src={book.img} alt={book.title} />
+        <Image height="200px" width="150" src={book?.img} alt={book.title} />
       </Box>
 
       <Box display="flex" flexDir="column" gap="1rem" flex="1">
@@ -38,7 +33,7 @@ const Card = ({ book }: CardProps) => {
         </Heading>
 
         <Box>
-          <ModalBook />
+          <ModalBook book={book} />
         </Box>
       </Box>
     </Box>

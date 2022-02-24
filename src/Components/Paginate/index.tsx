@@ -3,8 +3,10 @@ import ReactPaginate from "react-paginate";
 import { getBooksWithTerms, SelectBooks } from "../../store/Books.store";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import { useEffect, useState } from "react";
 
 const Paginate = () => {
+  const [page, setPage] = useState(0);
   const { totalPages, terms } = useAppSelector(SelectBooks);
   const dispatch = useAppDispatch();
 
@@ -12,29 +14,39 @@ const Paginate = () => {
     ul: {
       display: "flex",
       width: "100%",
-      "justify-content": "center",
-      "list-style": "none",
-      "user-select": "none",
+      justifyContent: "center",
+      listStyle: "none",
+      userSelect: "none",
     },
 
     a: {
       transition: "all 0.1s",
       padding: { base: "0.8rem", md: "1rem" },
-      "font-weight": "bold",
-      "line-height": "2.5rem",
+      fontWeight: "bold",
+      lineHeight: "2.5rem",
     },
 
     ".selected": {
       color: "white",
       background: "black",
-      "border-color": "transparent",
-      " border-radius": "4px",
+      borderColor: "transparent",
+      borderRadius: "4px",
     },
   };
 
-  const handlePage = async (page: number): Promise<void> => {
-    await dispatch(getBooksWithTerms({ page, terms }));
+  const handlePage = async (): Promise<void> => {
+    if (terms) {
+      await dispatch(getBooksWithTerms({ page, terms }));
+    }
   };
+
+  useEffect(() => {
+    handlePage();
+  }, [page]);
+
+  useEffect(() => {
+    setPage(0);
+  }, [terms]);
 
   return (
     <Box
@@ -46,9 +58,10 @@ const Paginate = () => {
     >
       <ReactPaginate
         pageCount={totalPages}
-        onPageChange={({ selected }) => handlePage(selected)}
+        onPageChange={({ selected }) => setPage(selected)}
         previousLabel={<ArrowLeftIcon />}
         nextLabel={<ArrowRightIcon />}
+        forcePage={page}
       />
     </Box>
   );

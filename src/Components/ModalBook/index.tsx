@@ -2,19 +2,25 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
   Box,
   Button,
+  Heading,
+  Text,
 } from "@chakra-ui/react";
 import { addFavorite } from "../../store/Favorites.store";
 import { useAppDispatch } from "../../store/store";
 import { InfoIcon } from "@chakra-ui/icons";
+import Image from "next/image";
+import { Book } from "../../types/book";
 
-const ModalBook = () => {
+interface ModalBookProps {
+  book: Book;
+}
+
+const ModalBook = ({ book }: ModalBookProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
 
@@ -24,16 +30,66 @@ const ModalBook = () => {
         Ver Detalhes
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="2xl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <Button onClick={() => dispatch(addFavorite({ name: "teste5" }))}>
+          <ModalBody p="3rem 1rem">
+            <Box display="flex" justifyContent="center">
+              <Image
+                height="420px"
+                width="280"
+                src={book?.img}
+                alt={book?.title}
+              />
+            </Box>
+
+            <Box
+              display="grid"
+              gap="1rem"
+              css={{
+                p: {
+                  fontWeight: "bold",
+                  color: "#999999",
+                },
+                h3: {
+                  fontWeight: "bold",
+                },
+              }}
+            >
+              <Heading textAlign="center">{book.title}</Heading>
+
+              <Box>
+                <Text as="h3">Autores:</Text>
+                <Text as="p">{book.authors}</Text>
+              </Box>
+
+              <Box>
+                <Text as="h3">Editora:</Text>
+                <Text as="p">{book.publisher}</Text>
+              </Box>
+              <Box>
+                <Text as="h3">Total de páginas: </Text>
+                <Text as="p"> {book.pageCount}</Text>
+              </Box>
+
+              <Box
+                css={{
+                  display: "-webkit-box",
+                  "-webkit-line-clamp": "5",
+                  "-webkit-box-orient": "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                <Text as="h3">Sinopse:</Text>
+                <Text as="p" textOverflow="ellipsis">
+                  {book.description}
+                </Text>
+              </Box>
+            </Box>
+            {/* <Button onClick={() => dispatch(addFavorite({ name: "teste5" }))}>
               Local storage
-            </Button>
-            <h1>MODAL</h1>
+            </Button> */}
           </ModalBody>
         </ModalContent>
       </Modal>

@@ -1,12 +1,13 @@
 import { createSlice ,createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import { BookApi } from '../services/BookApi';
+import { Book } from '../types/book';
 import { RootState } from './store';
 
 
 const { getBooks } = BookApi();
 
 interface BooksProps {
-  books: any[];
+  books: Book[];
   totalPages: number;
   terms: string;
   totalItemsPerPage: number;
@@ -19,7 +20,7 @@ interface getBooksWithTermsProps {
 
 const initialState:BooksProps = {
   books: [],
-  totalItemsPerPage: 10,
+  totalItemsPerPage: 12,
   totalPages: 0,
   terms: "",
 }
@@ -55,7 +56,10 @@ export const BooksSlice = createSlice({
           id: book.id,
           img: book.volumeInfo?.imageLinks?.thumbnail,
           title: book.volumeInfo?.title,
-          authors: String(book.volumeInfo?.authors).replaceAll(","," ")
+          authors: String(book.volumeInfo?.authors).replaceAll(","," "),
+          publisher: book.volumeInfo?.publisher,
+          description: book.volumeInfo?.description,
+          pageCount: book.volumeInfo?.pageCount,
         }
       })
 

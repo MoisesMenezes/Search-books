@@ -13,7 +13,7 @@ const Footer = () => {
       flexShrink="0"
     >
       <Text fontWeight="bold" color="purple.500">
-        Development by Moisés Menezes
+        By Moisés Menezes
       </Text>
     </Box>
   );

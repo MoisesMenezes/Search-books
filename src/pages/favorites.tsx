@@ -1,10 +1,6 @@
 import type { NextPage } from "next";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import {
-  getFavorites,
-  removeFavorite,
-  SelectFavorites,
-} from "../store/Favorites.store";
+import { getFavorites, SelectFavorites } from "../store/Favorites.store";
 import { useEffect } from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
 import Card from "../Components/Card";

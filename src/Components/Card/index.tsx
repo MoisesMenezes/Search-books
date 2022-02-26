@@ -20,7 +20,12 @@ const Card = ({ book }: CardProps) => {
       boxShadow="0 2px 2px 0 rgba(0, 0, 0, 0.08)"
     >
       <Box minW="150px">
-        <Image height="200px" width="150" src={book?.img} alt={book.title} />
+        <Image
+          height="200px"
+          width="150"
+          src={book?.img || "/generic-book.jpg"}
+          alt={book.title}
+        />
       </Box>
 
       <Box display="flex" flexDir="column" gap="1rem" flex="1">

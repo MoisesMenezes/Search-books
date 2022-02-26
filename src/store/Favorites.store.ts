@@ -1,10 +1,11 @@
 import { createSlice ,createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import { Book } from '../types/book';
 import { RootState } from './store';
 
 
 
 interface FavoritesProps {
-  favorites: any[];
+  favorites: Book[];
 }
 
 
@@ -16,14 +17,20 @@ export const FavoriteSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
-    addFavorite: (state, action: PayloadAction<any>) => {
+    addFavorite: (state, action: PayloadAction<Book>) => {
+      const bookFilter = state.favorites.find((book) => {
+        return book.id === action.payload.id
+      })
+
+      if(bookFilter) return;
+
       state.favorites = [...state.favorites,action.payload]
       localStorage.setItem('books', JSON.stringify(state.favorites))
     },
 
-    removeFavorite: (state, action: PayloadAction<any>) => {
+    removeFavorite: (state, action: PayloadAction<Book>) => {
       const newArray = state.favorites.filter((item) => {
-        return item.name !== action.payload
+        return item.id !== action.payload.id
       })
 
       state.favorites = newArray;

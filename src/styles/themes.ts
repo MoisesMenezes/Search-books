@@ -9,14 +9,26 @@ export const theme = extendTheme({
       "800": "#47585B"
     },
 
+    purple: {
+      "500": "#330F74"
+    }
   },
-
-
 
   styles: {
     global: {
+      'html, body': {
+        height: "100%",
+      },
+
       body: {
-        bg: "gray.300"
+        bg: "gray.300",
+        fontFamily: "Poppins",
+
+        "#__next": {
+          height: "100%",
+          display: "flex",
+          flexDir:"column",
+        }
       }
     }
   }

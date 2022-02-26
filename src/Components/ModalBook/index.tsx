@@ -87,9 +87,24 @@ const ModalBook = ({ book }: ModalBookProps) => {
                 </Text>
               </Box>
             </Box>
-            {/* <Button onClick={() => dispatch(addFavorite({ name: "teste5" }))}>
-              Local storage
-            </Button> */}
+            <Button
+              position="absolute"
+              top="7%"
+              right="20%"
+              p="8px"
+              _hover={{
+                background: "none",
+              }}
+              borderRadius="40%"
+              onClick={() => dispatch(addFavorite(book))}
+            >
+              <Image
+                width="25px"
+                height="25px"
+                src="/svg/heart-full.svg"
+                alt="favorito"
+              />
+            </Button>
           </ModalBody>
         </ModalContent>
       </Modal>

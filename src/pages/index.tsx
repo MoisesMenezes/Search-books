@@ -18,16 +18,16 @@ const Home: NextPage = () => {
     dispatch(getFavorites());
   }, []);
 
-  console.log("favorite", books);
-
   return (
-    <>
+    <Box p={{ base: "2rem 0.5rem", md: "1rem 2rem" }} flex="1 0  auto">
+      <Heading textAlign="center" m="2rem 0">
+        Pesquise pelo seu livro Favoritos
+      </Heading>
       <Box p="2rem">
         <SearchInput />
       </Box>
 
       <Box
-        p={{ base: "2rem 0.5rem", md: "1rem 2rem" }}
         margin="0 auto"
         display="flex"
         gap="2rem"
@@ -39,10 +39,8 @@ const Home: NextPage = () => {
         ))}
       </Box>
 
-      <Box>
-        <Paginate />
-      </Box>
-    </>
+      <Box>{books.length > 0 && <Paginate />}</Box>
+    </Box>
   );
 };
 

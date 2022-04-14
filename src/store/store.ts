@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 
 import BooksReducer from "./Books.store";
@@ -15,6 +15,12 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+
+
+export const RootReducer = combineReducers({
+  books: BooksReducer,
+  favorites: FavoriteReducer
+})
 
 
 export type AppDispatch = typeof store.dispatch;
